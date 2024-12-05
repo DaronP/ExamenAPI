@@ -24,11 +24,11 @@ Para configurar la REST API de Node se debe:
 
 ## Base de datos MySQL
 ### Está llamada “empresa” y contiene dos tablas:
-departamento:
+#### departamento:
 -	código_departamento – Integer, Primary Key
 -	nombre_depto – Varchar(75)
 -	presupuesto – Decimal
-empleado:
+#### empleado:
 -	dpi – Integer, Primary Key
 -	nombre – Varchar(100)
 -	apellidos – Varchar(125)
