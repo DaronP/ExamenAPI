@@ -7,13 +7,8 @@ Estructura del proyecto:
 - MySQL versión 8.0 o superior
 - Node.js versión 14 o superior
 - .NET SDK versión 6
--	Dependencias de Node:
---	mysql
---	cors
---	bodyparser
---	express
--	Dependencias C#:
---	WebApp
+-	Dependencias de Node:	mysql,	cors,	bodyparser,	express
+-	Dependencias C#:	WebApp
 
 ## Instalación:
 Para crear la base de datos llamada “empresa”, con sus tablas (“empleado” y “departamento”), se deben ejecutar los queries que están en el archivo “queries.sql”.
