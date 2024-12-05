@@ -4,6 +4,11 @@
 
 <h1>Consultas Examen Jorge Andres Perez Barrios</h1>
 
+
+<!-- 
+    Division para colocar los botones de las consultas dinamicamente
+    Descripcion: Itera sobre un valor máximo que es el número de botones a colocar en la GUI. Estos botones ejecutan las consultas 1 a 14 a la API por medio de metodos GET.
+-->
 <div>
     <h2>Ejecutar Consultas</h2>
     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
@@ -17,15 +22,11 @@
     </div>
 </div>
 
-@if (ViewBag.Message != null)
-{
-    <p style="color: green;">@ViewBag.Message</p>
-}
-else if (ViewBag.Error != null)
-{
-    <p style="color: red;">@ViewBag.Error</p>
-}
 
+<!--
+    Division para interfaz grafica de insercion de datos de departamento.
+    Descripcion: Se crean los campos de texto para el ingreso de datos a la tabla de departamento para que, con un boton, los valores puedan ser enviados a la API por medio de un metodo POST.
+-->
 <div>
     <h2>Agregar Nuevo Departamento</h2>
     <form method="post" asp-action="AgregarDepartamento">
@@ -45,6 +46,11 @@ else if (ViewBag.Error != null)
     </form>
 </div>
 
+
+<!--
+    Division para interfaz grafica de insercion de datos de empleados.
+    Descripcion: Se crean los campos de texto para el ingreso de datos a la tabla de empleado para que, con un boton, los valores puedan ser enviados a la API por medio de un metodo POST.
+-->
 <div>
     <h2>Agregar Nuevo Empleado</h2>
     <form method="post" asp-action="AgregarEmpleado">
@@ -69,7 +75,11 @@ else if (ViewBag.Error != null)
 </div>
 
 
-
+<!--
+    Visualizacion de los datos obtenidos a traves del metodo GET
+    Se parsea el resultado de formato JSON y se convierten los datos a un diccionario para luego iterar sobre este para obtener los nombres de las columnas y sus respectivos valores
+    y mostrarlos como una tabla (nombres de columnas como headers y sus valores como datos).
+-->
 @if (ViewBag.Results != null && ViewBag.Results.Count > 0)
 {
     <div>

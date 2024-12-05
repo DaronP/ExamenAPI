@@ -17,7 +17,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) throw err;
-    console.log('Conectado a la base de datos MySQL');
+    console.log('Connectio to MySQL database successful!');
 });
 
 
@@ -156,7 +156,7 @@ app.get('/consulta14', (req, res) => {
     });
 });
 
-// Consulta 15: 15)	Agregar un nuevo departamento “Control de Calidad”, con presupuesto de 40,000 y código 11. Y agregar un empleado vinculado a este departamento de nombre Esther Vásquez y con DNI: 28948238      
+// Consulta 15: Agregar un nuevo departamento “Control de Calidad”, con presupuesto de 40,000 y código 11. Y agregar un empleado vinculado a este departamento de nombre Esther Vásquez y con DNI: 28948238      
 app.post('/departamento', (req, res) => {
     const query = 'INSERT INTO departamento SET ?';
 
