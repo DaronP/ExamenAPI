@@ -16,11 +16,11 @@ Estructura del proyecto:
 --	WebApp
 
 ## Instalación:
--	Para crear la base de datos llamada “empresa”, con sus tablas (“empleado” y “departamento”), se deben ejecutar los queries que están en el archivo “queries.sql”.
--	Para configurar la REST API de Node se debe:
---	Correr el comando “npm install” en el directorio base del proyecto de Node.js para instalar las dependencias.
---	Editar la configuración de la base de datos en el archivo app.js
---	Correr el comando “node app.js” para iniciar el servidor.
+Para crear la base de datos llamada “empresa”, con sus tablas (“empleado” y “departamento”), se deben ejecutar los queries que están en el archivo “queries.sql”.
+Para configurar la REST API de Node se debe:
+-	Correr el comando “npm install” en el directorio base del proyecto de Node.js para instalar las dependencias.
+-	Editar la configuración de la base de datos en el archivo app.js
+-	Correr el comando “node app.js” para iniciar el servidor.
 
 ## Base de datos MySQL
 ### Está llamada “empresa” y contiene dos tablas:
