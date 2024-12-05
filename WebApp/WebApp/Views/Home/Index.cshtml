@@ -2,12 +2,12 @@
     ViewBag.Title = "Consultas";
 }
 
-<h1>Consultas</h1>
+<h1>Consultas Examen Jorge Andres Perez Barrios</h1>
 
 <div>
     <h2>Ejecutar Consultas</h2>
     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
-        @for (int i = 1; i <= 15; i++)
+        @for (int i = 1; i <= 14; i++)
         {
             <form method="get" asp-action="Consulta" style="display: inline;">
                 <input type="hidden" name="id" value="@i" />
@@ -17,10 +17,63 @@
     </div>
 </div>
 
+@if (ViewBag.Message != null)
+{
+    <p style="color: green;">@ViewBag.Message</p>
+}
+else if (ViewBag.Error != null)
+{
+    <p style="color: red;">@ViewBag.Error</p>
+}
+
+<div>
+    <h2>Agregar Nuevo Departamento</h2>
+    <form method="post" asp-action="AgregarDepartamento">
+        <div>
+            <label>Código:</label>
+            <input type="number" name="CodigoDepartamento" required />
+        </div>
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="NombreDepto" required />
+        </div>
+        <div>
+            <label>Presupuesto:</label>
+            <input type="number" name="Presupuesto" required />
+        </div>
+        <button type="submit">Agregar Departamento</button>
+    </form>
+</div>
+
+<div>
+    <h2>Agregar Nuevo Empleado</h2>
+    <form method="post" asp-action="AgregarEmpleado">
+        <div>
+            <label>DPI:</label>
+            <input type="text" name="Dpi" required />
+        </div>
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="Nombre" required />
+        </div>
+        <div>
+            <label>Apellidos:</label>
+            <input type="text" name="Apellidos" required />
+        </div>
+        <div>
+            <label>Código de Departamento:</label>
+            <input type="number" name="CodDepto" required />
+        </div>
+        <button type="submit">Agregar Empleado</button>
+    </form>
+</div>
+
+
+
 @if (ViewBag.Results != null && ViewBag.Results.Count > 0)
 {
     <div>
-        <h2>Resultados de la Consulta @ViewBag.ConsultaId</h2>
+        <h2>Consulta @ViewBag.ConsultaId</h2>
         <table border="1" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
             <thead>
                 <tr>
@@ -47,8 +100,4 @@
 else if (ViewBag.Error != null)
 {
     <p style="color: red;">@ViewBag.Error</p>
-}
-else
-{
-    <p>No se ha ejecutado ninguna consulta todavía o no hay resultados disponibles.</p>
 }

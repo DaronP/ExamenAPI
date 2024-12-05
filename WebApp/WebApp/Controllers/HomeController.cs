@@ -22,24 +22,6 @@ namespace WebApp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddDepartamento(Departamento departamento)
-        {
-            var json = JsonSerializer.Serialize(departamento);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            await _httpClient.PostAsync("/departamento", content);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AddEmpleado(Empleado empleado)
-        {
-            var json = JsonSerializer.Serialize(empleado);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            await _httpClient.PostAsync("/empleado", content);
-            return RedirectToAction("Index");
-        }
-
         public async Task<IActionResult> Consulta(int id)
         {
             string endpoint = $"/consulta{id}";
@@ -47,7 +29,8 @@ namespace WebApp.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                ViewBag.Error = "Error ejecutando la consulta.";
+                ViewBag.Error = "Error executing query...";
+                Console.WriteLine(response);
                 return View("Index");
             }
 
@@ -59,5 +42,47 @@ namespace WebApp.Controllers
             ViewBag.Results = results;
             return View("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarDepartamento(Departamento departamento)
+        {
+            if (departamento == null || departamento.CodigoDepartamento == 0)
+            {
+                ViewBag.Error = departamento;
+            }
+            var json = JsonSerializer.Serialize(departamento);
+            Console.WriteLine(json);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("/departamento", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "Error al agregar el departamento.";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Message = "Departamento agregado exitosamente.";
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarEmpleado(Empleado empleado)
+        {
+            var json = JsonSerializer.Serialize(empleado);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("/empleado", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                ViewBag.Error = "Error al agregar el empleado.";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Message = "Empleado agregado exitosamente.";
+            return RedirectToAction("Index");
+        }
+
     }
 }
