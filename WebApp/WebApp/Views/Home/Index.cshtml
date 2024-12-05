@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Consultas";
+}
+
+<h1>Consultas</h1>
+
+<div>
+    <h2>Ejecutar Consultas</h2>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+        @for (int i = 1; i <= 15; i++)
+        {
+            <form method="get" asp-action="Consulta" style="display: inline;">
+                <input type="hidden" name="id" value="@i" />
+                <button type="submit">Consulta @i</button>
+            </form>
+        }
+    </div>
+</div>
+
+@if (ViewBag.Results != null && ViewBag.Results.Count > 0)
+{
+    <div>
+        <h2>Resultados de la Consulta @ViewBag.ConsultaId</h2>
+        <table border="1" style="border-collapse: collapse; width: 100%; margin-top: 20px;">
+            <thead>
+                <tr>
+                    @foreach (var column in ((Dictionary<string, object>)ViewBag.Results[0]).Keys)
+                    {
+                        <th style="text-align: left; padding: 5px;">@column</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var row in ViewBag.Results)
+                {
+                    <tr>
+                        @foreach (var value in ((Dictionary<string, object>)row).Values)
+                        {
+                            <td style="padding: 5px;">@value</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else if (ViewBag.Error != null)
+{
+    <p style="color: red;">@ViewBag.Error</p>
+}
+else
+{
+    <p>No se ha ejecutado ninguna consulta todavía o no hay resultados disponibles.</p>
+}
